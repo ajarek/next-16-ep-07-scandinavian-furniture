@@ -1,0 +1,131 @@
+[
+    {
+        "id": 1,
+        "name": "Oak Dining Table",
+        "price": "$1,295",
+        "image": "/table.png",
+        "category": "Furniture",
+        "description": "Available in 3 colors"
+    },
+    {
+        "id": 2,
+        "name": "Linen Lounge Chair",
+        "price": "$895",
+        "image": "/chair.png",
+        "category": "Furniture",
+        "description": "Available in 3 colors"
+    },
+    {
+        "id": 3,
+        "name": "Stockholm Sideboard",
+        "price": "$1,595",
+        "image": "/cabinet.png",
+        "category": "Furniture",
+        "description": "Available in 3 colors"
+    },
+    {
+        "id": 4,
+        "name": "Nordic Sofa 3-Seater",
+        "price": "$2,495",
+        "image": "/sofa.png",
+        "category": "Furniture",
+        "description": "Available in 3 colors"
+    },
+    {
+        "id": 5,
+        "name": "Malmö Armchair",
+        "price": "$695",
+        "image": "/Chair-1.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Minimalist design with oak legs"
+    },
+    {
+        "id": 6,
+        "name": "Gothenburg Coffee Table",
+        "price": "$450",
+        "image": "/Table-1.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Round table in natural oak"
+    },
+    {
+        "id": 7,
+        "name": "Uppsala Bookshelf",
+        "price": "$895",
+        "image": "/sideboard-1.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Sleek storage solution"
+    },
+    {
+        "id": 8,
+        "name": "Kiruna Bed Frame",
+        "price": "$1,150",
+        "image": "/sofa-1.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Modern pine wood frame"
+    },
+    {
+        "id": 9,
+        "name": "Västerås Side Table",
+        "price": "$295",
+        "image": "/Table-2.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Compact and versatile"
+    },
+    {
+        "id": 10,
+        "name": "Örebro Dining Chair",
+        "price": "$195",
+        "image": "/Chair-2.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Classic stick-back chair"
+    },
+    {
+        "id": 11,
+        "name": "Lund Desk",
+        "price": "$750",
+        "image": "/sofa-2.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Minimalist workspace"
+    },
+    {
+        "id": 12,
+        "name": "Helsingborg Wardrobe",
+        "price": "$1,895",
+        "image": "/sideboard-2.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Spacious white wardrobe"
+    },
+    {
+        "id": 13,
+        "name": "Helsingborg Wardrobe",
+        "price": "$1,895",
+        "image": "/sideboard-3.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Spacious white wardrobe"
+    },
+    
+    {
+        "id": 14,
+        "name": "Helsingborg Wardrobe",
+        "price": "$1,895",
+        "image": "/sofa-3.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Spacious white wardrobe"
+    },
+    {
+        "id": 15,
+        "name": "Helsingborg Wardrobe",
+        "price": "$1,895",
+        "image": "/Table-3.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Spacious white wardrobe"
+    },
+    {
+        "id": 16,
+        "name": "Helsingborg Wardrobe",
+        "price": "$1,895",
+        "image": "/Chair-3.webp",
+        "category": "Meble Szwedzkie",
+        "description": "Spacious white wardrobe"
+    }
+]

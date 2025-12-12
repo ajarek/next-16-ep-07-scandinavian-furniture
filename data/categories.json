@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Furniture",
+        "image": "/sofa.png"
+    },
+    {
+        "id": 2,
+        "title": "Tables",
+        "image": "/table.png"
+    },
+    {
+        "id": 3,
+        "title": "Storage",
+        "image": "/cabinet.png"
+    }
+]

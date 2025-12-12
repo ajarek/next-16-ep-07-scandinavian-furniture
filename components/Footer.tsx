@@ -1,21 +1,21 @@
-import Link from "next/link";
+import Link from "next/link"
 
 const Footer = () => (
-  <footer className='bg-white pt-24 pb-12 px-6 border-t border-zinc-100 font-sans'>
+  <footer className='bg-background pt-24 pb-12 px-6 border-t border-border font-sans'>
     <div className='max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-20'>
       <div className='space-y-6'>
-        <Link href='/' className='text-2xl font-serif text-zinc-900'>
+        <Link href='/' className='text-2xl font-serif text-foreground'>
           NØRD
         </Link>
-        <p className='text-zinc-500 text-sm leading-relaxed max-w-xs'>
+        <p className='text-muted-foreground text-sm leading-relaxed max-w-xs'>
           Timeless furniture designed for modern living. Rooted in Scandinavian
           tradition, crafted for today.
         </p>
       </div>
 
       <div>
-        <h4 className='font-serif text-zinc-900 mb-6'>Shop</h4>
-        <ul className='space-y-4 text-sm text-zinc-500'>
+        <h4 className='font-serif text-foreground mb-6'>Shop</h4>
+        <ul className='space-y-4 text-sm text-muted-foreground'>
           {[
             "All Products",
             "New Arrivals",
@@ -24,7 +24,10 @@ const Footer = () => (
             "Lighting",
           ].map((item) => (
             <li key={item}>
-              <Link href='/' className='hover:text-zinc-900 transition-colors'>
+              <Link
+                href='/'
+                className='hover:text-foreground transition-colors'
+              >
                 {item}
               </Link>
             </li>
@@ -33,8 +36,8 @@ const Footer = () => (
       </div>
 
       <div>
-        <h4 className='font-serif text-zinc-900 mb-6'>Company</h4>
-        <ul className='space-y-4 text-sm text-zinc-500'>
+        <h4 className='font-serif text-foreground mb-6'>Company</h4>
+        <ul className='space-y-4 text-sm text-muted-foreground'>
           {[
             "Story",
             "Sustainability",
@@ -43,7 +46,10 @@ const Footer = () => (
             "Privacy Policy",
           ].map((item) => (
             <li key={item}>
-              <Link href='/' className='hover:text-zinc-900 transition-colors'>
+              <Link
+                href='/'
+                className='hover:text-foreground transition-colors'
+              >
                 {item}
               </Link>
             </li>
@@ -52,13 +58,13 @@ const Footer = () => (
       </div>
 
       <div>
-        <h4 className='font-serif text-zinc-900 mb-6'>Contact</h4>
-        <ul className='space-y-4 text-sm text-zinc-500'>
+        <h4 className='font-serif text-foreground mb-6'>Contact</h4>
+        <ul className='space-y-4 text-sm text-muted-foreground'>
           <li>hello@nord-furniture.com</li>
           <li>+45 12 34 56 78</li>
           <li className='pt-4 flex gap-4'>
             {/* Social Placeholders */}
-            <div className='w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center hover:bg-zinc-200 cursor-pointer transition-colors text-zinc-400 hover:text-zinc-600'>
+            <div className='w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-muted/80 cursor-pointer transition-colors text-muted-foreground hover:text-foreground'>
               <span className='sr-only'>Instagram</span>
               <svg
                 className='w-4 h-4'
@@ -79,7 +85,7 @@ const Footer = () => (
       </div>
     </div>
 
-    <div className='max-w-screen-2xl mx-auto pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-zinc-400 font-sans'>
+    <div className='max-w-screen-2xl mx-auto pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground font-sans'>
       <p>&copy; 2025 NØRD Furniture. All rights reserved.</p>
       <div className='flex gap-6'>
         <span>Copenhagen, Denmark</span>

@@ -10,7 +10,7 @@ const ProductCard = ({
   image: string
 }) => (
   <div className='group cursor-pointer space-y-4'>
-    <div className='relative aspect-[3/4] overflow-hidden bg-white rounded-xl'>
+    <div className='relative aspect-[3/4] overflow-hidden bg-card rounded-xl'>
       <Image
         src={image}
         alt={name}
@@ -20,19 +20,21 @@ const ProductCard = ({
 
       {/* Quick View Button */}
       <div className='absolute inset-x-4 bottom-4 translate-y-[calc(100%+16px)] group-hover:translate-y-0 transition-transform duration-300'>
-        <button className='w-full py-3 bg-white/90 backdrop-blur-sm shadow-md text-zinc-900 text-sm font-medium rounded-lg hover:bg-zinc-900 hover:text-white transition-colors font-sans'>
+        <button className='w-full py-3 bg-background/90 backdrop-blur-sm shadow-md text-foreground text-sm font-medium rounded-lg hover:bg-foreground hover:text-background transition-colors font-sans'>
           Quick View
         </button>
       </div>
     </div>
     <div className='flex justify-between items-start font-sans'>
       <div>
-        <h3 className='text-zinc-900 font-medium group-hover:text-zinc-600 transition-colors'>
+        <h3 className='text-foreground font-medium group-hover:text-muted-foreground transition-colors'>
           {name}
         </h3>
-        <p className='text-zinc-500 text-sm mt-1'>Available in 3 colors</p>
+        <p className='text-muted-foreground text-sm mt-1'>
+          Available in 3 colors
+        </p>
       </div>
-      <span className='text-zinc-900 font-medium'>{price}</span>
+      <span className='text-foreground font-medium'>{price}</span>
     </div>
   </div>
 )
