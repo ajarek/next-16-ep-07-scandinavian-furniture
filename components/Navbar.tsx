@@ -1,6 +1,14 @@
 import { Search, ShoppingCart, User } from "lucide-react"
 import Link from "next/link"
 import ModeToggle from "./ModeToggle"
+ 
+const links = [
+    { href: "/", label: "Home" },
+    { href: "/shop", label: "Shop" },
+    { href: "/collection", label: "Collection" },
+    { href: "/about", label: "About Us" },
+    { href: "/journal", label: "Journal" },
+]
 
 const Navbar = () => (
   <nav className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50'>
@@ -17,13 +25,13 @@ const Navbar = () => (
 
       {/* Center Menu */}
       <div className='hidden md:flex items-center space-x-12'>
-        {["Shop", "Collection", "About Us", "Journal"].map((item) => (
+        {links.map((item) => (
           <Link
-            key={item}
-            href={`/`}
+            key={item.href}
+            href={item.href}
             className='text-sm font-medium text-muted-foreground hover:text-foreground transition-colors uppercase tracking-wide font-sans'
           >
-            {item}
+            {item.label}
           </Link>
         ))}
       </div>
