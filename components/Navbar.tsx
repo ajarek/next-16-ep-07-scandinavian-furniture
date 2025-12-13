@@ -7,7 +7,6 @@ const links = [
     { href: "/shop", label: "Shop" },
     { href: "/collection", label: "Collection" },
     { href: "/about", label: "About Us" },
-    { href: "/journal", label: "Journal" },
 ]
 
 const Navbar = () => (
