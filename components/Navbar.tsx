@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import ModeToggle from "./ModeToggle"
 import { useRouter } from "next/navigation"
+import { useCartStore } from "@/store/cartStore"
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
@@ -15,7 +17,18 @@ const links = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const router = useRouter()
+  const { items } = useCartStore()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const totalItems = mounted
+    ? items.reduce((acc, item) => acc + (item.quantity ?? 1), 0)
+    : 0
+
   return (
     <nav className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50'>
       <div className='max-w-screen-2xl mx-auto px-6 h-20 flex items-center justify-between'>
@@ -55,19 +68,28 @@ const Navbar = () => {
 
         {/* Right Icons */}
         <div className='flex-1 flex items-center justify-end space-x-4 md:space-x-6'>
-          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block' onClick={() => router.push('/shop')}>
+          <button
+            className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block'
+            onClick={() => router.push("/shop")}
+          >
             <Search size={20} strokeWidth={1.5} />
           </button>
-          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block' >
+          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block'>
             <User size={20} strokeWidth={1.5} />
           </button>
-          <button className='text-muted-foreground hover:text-foreground transition-colors relative'>
+
+          <button
+            className='text-muted-foreground hover:text-foreground transition-colors relative'
+            onClick={() => router.push("/cart")}
+          >
             <ShoppingCart size={20} strokeWidth={1.5} />
-            <span className='absolute -top-1 -right-1 flex h-2 w-2'>
-              <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75'></span>
-              <span className='relative inline-flex rounded-full h-2 w-2 bg-primary'></span>
-            </span>
+            {totalItems > 0 && (
+              <span className='absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground font-medium animate-in fade-in zoom-in duration-300'>
+                {totalItems}
+              </span>
+            )}
           </button>
+
           <ModeToggle />
         </div>
       </div>
@@ -122,9 +144,12 @@ const Navbar = () => {
 
             {/* Mobile Footer Area */}
             <div className='p-8 flex justify-center space-x-8 text-white/80 bg-black/60 backdrop-blur-md'>
-            <button className='text-white/70 hover:text-white transition-colors' onClick={() => router.push('/shop')}>
-              <Search size={24} strokeWidth={1.5} />
-            </button>
+              <button
+                className='text-white/70 hover:text-white transition-colors'
+                onClick={() => router.push("/shop")}
+              >
+                <Search size={24} strokeWidth={1.5} />
+              </button>
               <User size={24} strokeWidth={1.5} />
             </div>
           </motion.div>
