@@ -17,7 +17,7 @@ const Bestsellers = () => {
             </p>
           </div>
           <Link
-            href='/'
+            href='/shop'
             className='hidden md:flex items-center text-sm font-medium text-foreground hover:text-muted-foreground transition-colors font-sans'
           >
             View All <ArrowRight className='ml-2 w-4 h-4' />
@@ -29,6 +29,7 @@ const Bestsellers = () => {
           .slice(0, 4)
           .map((product) => (
             <ProductCard
+            id={product.id.toString()}
               key={product.id}
               name={product.name}
               price={product.price}

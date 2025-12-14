@@ -25,7 +25,7 @@ const Hero = () => (
         </p>
 
         <Link
-          href='/'
+          href='/shop'
           className='group inline-flex items-center px-8 py-4 bg-transparent border border-foreground rounded-full text-foreground font-medium transition-all duration-300 hover:bg-foreground hover:text-background font-sans'
         >
           Discover the Collection

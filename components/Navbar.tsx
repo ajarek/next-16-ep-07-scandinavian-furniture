@@ -5,7 +5,7 @@ import { Search, ShoppingCart, User, Menu, X } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import ModeToggle from "./ModeToggle"
-
+import { useRouter } from "next/navigation"
 const links = [
   { href: "/", label: "Home" },
   { href: "/shop", label: "Shop" },
@@ -15,7 +15,7 @@ const links = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-
+  const router = useRouter()
   return (
     <nav className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50'>
       <div className='max-w-screen-2xl mx-auto px-6 h-20 flex items-center justify-between'>
@@ -55,10 +55,10 @@ const Navbar = () => {
 
         {/* Right Icons */}
         <div className='flex-1 flex items-center justify-end space-x-4 md:space-x-6'>
-          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block'>
+          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block' onClick={() => router.push('/shop')}>
             <Search size={20} strokeWidth={1.5} />
           </button>
-          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block'>
+          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block' >
             <User size={20} strokeWidth={1.5} />
           </button>
           <button className='text-muted-foreground hover:text-foreground transition-colors relative'>
@@ -121,8 +121,10 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Footer Area */}
-            <div className='p-8 flex justify-center space-x-8 text-white/80 '>
+            <div className='p-8 flex justify-center space-x-8 text-white/80 bg-black/60 backdrop-blur-md'>
+            <button className='text-white/70 hover:text-white transition-colors' onClick={() => router.push('/shop')}>
               <Search size={24} strokeWidth={1.5} />
+            </button>
               <User size={24} strokeWidth={1.5} />
             </div>
           </motion.div>

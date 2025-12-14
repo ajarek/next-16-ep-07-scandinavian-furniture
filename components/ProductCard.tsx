@@ -1,10 +1,14 @@
 import Image from "next/image"
+import { Button } from "./ui/button"
+import Link from "next/link"
 
 const ProductCard = ({
+  id,
   name,
   price,
   image,
 }: {
+  id: string
   name: string
   price: string
   image: string
@@ -20,9 +24,9 @@ const ProductCard = ({
 
       {/* Quick View Button */}
       <div className='absolute inset-x-4 bottom-4 translate-y-[calc(100%+16px)] group-hover:translate-y-0 transition-transform duration-300'>
-        <button className='w-full py-3 bg-background/90 backdrop-blur-sm shadow-md text-foreground text-sm font-medium rounded-lg hover:bg-foreground hover:text-background transition-colors font-sans'>
-          Quick View
-        </button>
+        <Button asChild className='w-full py-3 bg-background/90 backdrop-blur-sm shadow-md text-foreground text-sm font-medium rounded-lg hover:bg-foreground hover:text-background transition-colors font-sans'>
+          <Link href={`/product/${id}`}>Quick View</Link>
+        </Button>
       </div>
     </div>
     <div className='flex justify-between items-start font-sans'>

@@ -22,7 +22,7 @@ const Editorial = () => (
         the material. We believe in furniture that ages gracefully with you.
       </p>
       <Link
-        href='/'
+        href='/about'
         className='px-12 py-4 bg-white text-zinc-900 rounded-full font-medium hover:bg-zinc-100 transition-colors font-sans'
       >
         Discover our story
