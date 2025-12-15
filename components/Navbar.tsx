@@ -1,12 +1,14 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, ShoppingCart, User, Menu, X } from "lucide-react"
+import { Search, ShoppingCart, User, Menu, X, LogIn as LogInIcon } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import ModeToggle from "./ModeToggle"
 import { useRouter } from "next/navigation"
 import { useCartStore } from "@/store/cartStore"
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
+import { Button } from "./ui/button"
 
 const links = [
   { href: "/", label: "Home" },
@@ -74,9 +76,22 @@ const Navbar = () => {
           >
             <Search size={20} strokeWidth={1.5} />
           </button>
-          <button className='text-muted-foreground hover:text-foreground transition-colors hidden sm:block'>
-            <User size={20} strokeWidth={1.5} />
-          </button>
+          <SignedOut>
+              <SignUpButton>
+                <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
+                  <User size={20} strokeWidth={1.5} />
+                </Button>
+              </SignUpButton>
+
+              <SignInButton>
+                <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
+                  <LogInIcon size={20} strokeWidth={1.5} />
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
 
           <button
             className='text-muted-foreground hover:text-foreground transition-colors relative'
@@ -150,7 +165,22 @@ const Navbar = () => {
               >
                 <Search size={24} strokeWidth={1.5} />
               </button>
-              <User size={24} strokeWidth={1.5} />
+              <SignedOut>
+              <SignUpButton>
+                <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
+                  <User size={20} strokeWidth={1.5} />
+                </Button>
+              </SignUpButton>
+
+              <SignInButton>
+                <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
+                  <LogInIcon size={20} strokeWidth={1.5} />
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,5 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
 import { useCartStore } from "@/store/cartStore"
 import Image from "next/image"
 import Link from "next/link"
@@ -13,24 +12,14 @@ const Cart = () => {
     removeItemFromCart,
     increment,
     decrement,
-    total,
+
     removeAllFromCart,
   } = useCartStore()
-  const [isMounted, setIsMounted] = useState(false)
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  if (!isMounted) {
-    return (
-      <div className='min-h-screen flex items-center justify-center'>
-        <div className='animate-pulse'>Loading cart...</div>
-      </div>
-    )
-  }
-
-  const cartTotal = total()
+  const cartTotal = items.reduce(
+    (acc, item) => acc + item.price * (item.quantity ?? 1),
+    0
+  )
 
   if (items.length === 0) {
     return (
@@ -70,7 +59,7 @@ const Cart = () => {
                 key={item.id}
                 className='flex flex-col sm:flex-row gap-4 p-4 rounded-lg bg-card border border-border/50 shadow-sm'
               >
-                <div className='relative w-full sm:w-32 h-32 shrink-0 bg-muted rounded-md overflow-hidden'>
+                <div className='relative w-full sm:w-32 sm:h-32 h-64 shrink-0 bg-muted rounded-md overflow-hidden'>
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -158,8 +147,8 @@ const Cart = () => {
                 </div>
               </div>
 
-              <Button className='w-full' size='lg'>
-                Checkout
+              <Button asChild className='w-full' size='lg'>
+                <Link href='/checkout'>Checkout</Link>
               </Button>
 
               <p className='text-xs text-center text-muted-foreground mt-4'>

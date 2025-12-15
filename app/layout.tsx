@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import { ThemeProvider } from "next-themes"
 import { Toaster } from "sonner"
+import { ClerkProvider } from "@clerk/nextjs"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
+    <ClerkProvider>
     <html lang='en' suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
@@ -51,5 +53,6 @@ export default function RootLayout({
         <Toaster />
       </body>
     </html>
+    </ClerkProvider>
   )
 }
