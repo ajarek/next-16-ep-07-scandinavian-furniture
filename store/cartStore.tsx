@@ -1,13 +1,13 @@
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
-import type { Furniture } from '@/types/typeFurniture'
+import { create } from "zustand"
+import { persist, createJSONStorage } from "zustand/middleware"
+import type { Furniture } from "@/types/typeFurniture"
 
 type FurnitureState = {
   items: Furniture[]
   addItemToCart: (item: Furniture) => void
   removeItemFromCart: (id: string) => void
   total: () => number
-  removeAll: () => void
+
   increment: (id: string) => void
   decrement: (id: string) => void
   removeAllFromCart: () => void
@@ -35,7 +35,6 @@ export const useCartStore = create<FurnitureState>()(
           (acc, item) => acc + item.price * (item.quantity ?? 1),
           0
         ),
-      removeAll: () => set({ items: [] }),
 
       increment: (id: string) =>
         set((state) => ({
@@ -59,6 +58,6 @@ export const useCartStore = create<FurnitureState>()(
         })),
     }),
 
-    { name: 'cartStore', storage: createJSONStorage(() => localStorage) }
+    { name: "cartStore", storage: createJSONStorage(() => localStorage) }
   )
 )

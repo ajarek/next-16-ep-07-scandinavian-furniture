@@ -1,13 +1,30 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { Search, ShoppingCart, User, Menu, X, LogIn as LogInIcon } from "lucide-react"
+import { useState, useEffect, useRef } from "react"
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  X,
+  LogIn as LogInIcon,
+} from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import ModeToggle from "./ModeToggle"
 import { useRouter } from "next/navigation"
+import dynamic from "next/dynamic"
+
+const CartCountBadge = dynamic(() => import("./CartCountBadge"), { ssr: false })
 import { useCartStore } from "@/store/cartStore"
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs"
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+  useAuth,
+} from "@clerk/nextjs"
 import { Button } from "./ui/button"
 
 const links = [
@@ -19,17 +36,20 @@ const links = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
+
   const router = useRouter()
-  const { items } = useCartStore()
+  const { removeAllFromCart } = useCartStore()
+  const { isSignedIn, isLoaded } = useAuth()
+  const prevSignedIn = useRef<boolean | undefined>(undefined)
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  const totalItems = mounted
-    ? items.reduce((acc, item) => acc + (item.quantity ?? 1), 0)
-    : 0
+    if (isLoaded) {
+      if (prevSignedIn.current === true && !isSignedIn) {
+        removeAllFromCart()
+      }
+      prevSignedIn.current = isSignedIn
+    }
+  }, [isSignedIn, isLoaded, removeAllFromCart])
 
   return (
     <nav className='fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50'>
@@ -77,32 +97,28 @@ const Navbar = () => {
             <Search size={20} strokeWidth={1.5} />
           </button>
           <SignedOut>
-              <SignUpButton>
-                <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
-                  <User size={20} strokeWidth={1.5} />
-                </Button>
-              </SignUpButton>
+            <SignUpButton>
+              <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
+                <User size={20} strokeWidth={1.5} />
+              </Button>
+            </SignUpButton>
 
-              <SignInButton>
-                <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
-                  <LogInIcon size={20} strokeWidth={1.5} />
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+            <SignInButton>
+              <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
+                <LogInIcon size={20} strokeWidth={1.5} />
+              </Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
 
           <button
             className='text-muted-foreground hover:text-foreground transition-colors relative'
             onClick={() => router.push("/cart")}
           >
             <ShoppingCart size={20} strokeWidth={1.5} />
-            {totalItems > 0 && (
-              <span className='absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground font-medium animate-in fade-in zoom-in duration-300'>
-                {totalItems}
-              </span>
-            )}
+            <CartCountBadge />
           </button>
 
           <ModeToggle />
@@ -166,21 +182,21 @@ const Navbar = () => {
                 <Search size={24} strokeWidth={1.5} />
               </button>
               <SignedOut>
-              <SignUpButton>
-                <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
-                  <User size={20} strokeWidth={1.5} />
-                </Button>
-              </SignUpButton>
+                <SignUpButton>
+                  <Button className=' flex  cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5 text-base font-bold tracking-[0.015em]'>
+                    <User size={20} strokeWidth={1.5} />
+                  </Button>
+                </SignUpButton>
 
-              <SignInButton>
-                <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
-                  <LogInIcon size={20} strokeWidth={1.5} />
-                </Button>
-              </SignInButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+                <SignInButton>
+                  <Button className='bg-secondary hover:bg-secondary/80 text-secondary-foreground flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-5   text-base font-bold tracking-[0.015em]'>
+                    <LogInIcon size={20} strokeWidth={1.5} />
+                  </Button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
             </div>
           </motion.div>
         )}

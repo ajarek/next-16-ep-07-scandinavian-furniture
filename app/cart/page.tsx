@@ -20,6 +20,7 @@ const Cart = () => {
     (acc, item) => acc + item.price * (item.quantity ?? 1),
     0
   )
+  
 
   if (items.length === 0) {
     return (

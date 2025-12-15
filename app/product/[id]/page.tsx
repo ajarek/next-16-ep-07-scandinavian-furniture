@@ -16,7 +16,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const handleSubtract = () => {
     setQuantity(quantity > 1 ? quantity - 1 : 1)
   }
-  
+
   return (
     <div className='min-h-screen flex flex-col items-center justify-start py-24 px-6 '>
       <div className='w-full grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -30,7 +30,7 @@ const ProductPage = ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
         <div className='flex flex-col gap-6'>
           <h2 className=' text-4xl font-semibold text-foreground mb-4 '>
-            {product?.name} ID: {id}
+            {product?.name}
           </h2>
           <p className='text-xl text-muted-foreground font-sans'>
             {product?.category}
